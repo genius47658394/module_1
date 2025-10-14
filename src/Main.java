@@ -11,8 +11,6 @@ public class Main {
 
         Person person = new Person(sizeBoard);
 
-        String heart = "❤";
-
         int step = 0;
 
         String[][] board = new String[sizeBoard][sizeBoard];
@@ -44,19 +42,22 @@ public class Main {
                 count++;
             }
         }
+        count = 0;
 
         int castleX = r.nextInt(sizeBoard);
         int castleY = 0;
 
         board[castleY][castleX] = castle;
 
-        for (int i = 0; i < 2; i++){
+        String heart = "❤";
+
+        while (count <= 2){
             int heartX = r.nextInt(sizeBoard);
             int heartY = r.nextInt(sizeBoard);
 
-            if (board[heartY][heartX].equals(" ")){
+            if (board[heartY][heartX].equals("  ")){
                 board[heartY][heartX] = heart;
-
+                count++;
             }
         }
 
@@ -93,6 +94,7 @@ public class Main {
                             break;
                         } else if (next.equals("❤")){
                             person.upLive();
+                            board[person.getY() - 1][person.getX() - 1] = "  ";
                             person.move(x, y);
                             step++;
                         }
@@ -102,7 +104,6 @@ public class Main {
                                     if (monster.taskMonster(difficultGame)) {
                                         board[person.getY() - 1][person.getX() - 1] = "  ";
                                         person.move(x, y);
-
                                     } else {
                                         person.downLive();
                                     }
