@@ -34,7 +34,7 @@ public class Main {
                 if (r.nextBoolean()){
                     test = new BigMonster(sizeBoard);
                 }
-                else {ы
+                else {
                     test = new SmallMonster(sizeBoard);
                 }
             }
