@@ -7,25 +7,30 @@ public class Dragon extends Monster{
 
     @Override
     public boolean taskMonster(int difficultGame){
-        System.out.println("В замке ты встретился с драконом, реши последнюю задачу, чтобы победить его и освободить королевство");
+        System.out.println("ДРАКОН МАТЕМАТИКИ: Приготовься к самой сложной битве!");
+        System.out.println("Реши мое уравнение, смертный!");
 
-        int x = r.nextInt(10);
-        int y = r.nextInt(100);
-        int z = r.nextInt(100);
-        int s = r.nextInt(3);
+        int a = r.nextInt(5) + 2;
+        int b = r.nextInt(10) + 5;
+        int c = r.nextInt(8) + 3;
+        int d = r.nextInt(12) + 4;
 
-        int trueAns = Math.powExact(x, s) + y - z;
+        int trueAns = (a * a + b) * c - d;
 
-        System.out.println("Пример: " + x + " ^ " + s + " + " + y + " - " + z);
+        System.out.println("Реши уравнение: (" + a + "^2 + " + b + ") * " + c + " - " + d + " = ?");
+        System.out.println("Подсказка: сначала возведи в квадрат, потом сложи, умножь и вычти!");
 
         Scanner sc = new Scanner(System.in);
         int ans = sc.nextInt();
 
         if (trueAns == ans) {
-            System.out.println("Молодец, ты одолел главного босса, теперь королевство снова заживёт хорошей жизнью!");
+            System.out.println("НЕВЕРОЯТНО! Ты одолел Дракона Математики!");
+            System.out.println("Королевство спасено! Тебя будут помнить как величайшего героя!");
             return true;
         }
-        System.out.println("Ты проиграл эту битву! Возвращайся как станешь сильнее...");
+
+        System.out.println("Дракон побеждает! Его огонь сжигает твои надежды...");
+        System.out.println("Тренируйся больше и возвращайся, когда станешь сильнее!");
         return false;
     }
 }
