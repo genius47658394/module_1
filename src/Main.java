@@ -90,8 +90,10 @@ public class Main {
                                     "\nХод номер: " + step);
                         }
                         else if (next.equals(castle)) {
-                            System.out.println("Вы прошли игру!");
+                            Dragon dragon = new Dragon(sizeBoard);
+                            dragon.taskMonster(difficultGame);
                             break;
+
                         } else if (next.equals("❤")){
                             person.upLive();
                             board[person.getY() - 1][person.getX() - 1] = "  ";
