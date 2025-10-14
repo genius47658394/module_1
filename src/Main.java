@@ -4,6 +4,9 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
+        int correctAnswers = 0;
+        int totalAnswers = 0;
+
         Random r = new Random();
 
         String castle = "\uD83C\uDFF0";
@@ -92,6 +95,7 @@ public class Main {
                         else if (next.equals(castle)) {
                             Dragon dragon = new Dragon(sizeBoard);
                             dragon.taskMonster(difficultGame);
+                            showStats(correctAnswers, totalAnswers);
                             break;
 
                         } else if (next.equals("❤")){
@@ -106,8 +110,11 @@ public class Main {
                                     if (monster.taskMonster(difficultGame)) {
                                         board[person.getY() - 1][person.getX() - 1] = "  ";
                                         person.move(x, y);
+                                        correctAnswers++;
+                                        totalAnswers++;
                                     } else {
                                         person.downLive();
+                                        totalAnswers++;
                                     }
                                     break;
                                 }
@@ -138,5 +145,14 @@ public class Main {
         System.out.println(wall);
 
         System.out.println("Количество жизней:\t" + live + "\n");
+    }
+
+    static void showStats(int correctAnswers, int totalAnswers) {
+        double successRate = (double) correctAnswers / totalAnswers * 100;
+
+        System.out.println("=== СТАТИСТИКА ИГРЫ ===");
+        System.out.println("Побеждено монстров: " + correctAnswers);
+        System.out.println("Точность ответов: " + String.format("%.1f", successRate) + "%");
+//        System.out.println("Лучшее время: " + bestTime + " сек"); // maybe in future...
     }
 }
