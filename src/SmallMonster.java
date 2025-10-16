@@ -40,6 +40,14 @@ public class SmallMonster extends Monster{
         return false;
     }
 
+    public void move(int x, int y) {
+        super.move(x, y);
+    }
+
+    public boolean moveCorrect(int newX, int newY, int boardSize) {
+        return super.moveCorrect(newX, newY, boardSize);
+    }
+
     public boolean taskMonster() {
         return super.taskMonster(0);
     }

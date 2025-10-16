@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Monster {
     private String image = "\uD83E\uDDDF\u200D";
-    private final int x, y;
+    private int x, y;
     Random r = new Random();
 
     Monster(int sizeBoard){
@@ -29,6 +29,16 @@ public class Monster {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public void move(int x, int y){
+        this.x = x;
+        this.y = y;
+    }
+
+    public boolean moveCorrect(int newX, int newY, int boardSize) {
+        return newX >= 0 && newX < boardSize &&
+                newY >= 0 && newY < boardSize;
     }
 
     public boolean taskMonster(int difficultGame) {

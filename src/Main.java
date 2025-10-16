@@ -23,7 +23,7 @@ public class Main {
             }
         }
 
-        int countMonster = sizeBoard * sizeBoard - sizeBoard - 9;
+        int countMonster = sizeBoard * sizeBoard - sizeBoard - 13;
 
         Monster[] arrMonster = new Monster[countMonster + 1];
         int count = 0;
@@ -54,7 +54,7 @@ public class Main {
 
         String heart = "❤";
 
-        while (count <= 2){
+        while (count < 3){
             int heartX = r.nextInt(sizeBoard);
             int heartY = r.nextInt(sizeBoard);
 
@@ -120,6 +120,9 @@ public class Main {
                                 }
                             }
                         }
+
+                        moveAllMonsters(board, arrMonster, sizeBoard, difficultGame);
+
                     } else {
                         System.out.println("Некорректный ход");
                     }
@@ -127,6 +130,50 @@ public class Main {
             }
             case "НЕТ" -> System.out.println("Жаль, приходи еще!");
             default -> System.out.println("Данные введены некорректно");
+        }
+    }
+
+    static void moveAllMonsters(String[][] board, Monster[] monsters, int boardSize, int difficultGame) {
+        Random r = new Random();
+
+        for (int i = 0; i < monsters.length; i++) {
+            if (monsters[i] == null) continue;
+
+            int oldX = monsters[i].getX();
+            int oldY = monsters[i].getY();
+
+            int way = r.nextInt(4);
+            int newX = oldX;
+            int newY = oldY;
+
+            switch (way) {
+                case 0:
+                    newY = oldY - 1;
+                    break;
+                case 1:
+                    newY = oldY + 1;
+                    break;
+                case 2:
+                    newX = oldX - 1;
+                    break;
+                case 3:
+                    newX = oldX + 1;
+                    break;
+            }
+
+            if (monsters[i].moveCorrect(newX, newY, boardSize) &&
+                    board[newY][newX].equals("  ")) {
+
+                board[oldY][oldX] = "  ";
+
+                monsters[i].move(newX, newY);
+
+                board[newY][newX] = monsters[i].getImage();
+            }
+            else if (monsters[i].moveCorrect(newX, newY, boardSize) &&
+                    board[newY][newX].equals("\uD83E\uDDD9\u200D")) {
+                monsters[i].taskMonster(difficultGame);
+            }
         }
     }
 
